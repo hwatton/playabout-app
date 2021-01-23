@@ -1,23 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
+import Thingy from './components/playground.jsx'
+import Normal from './components/normal.jsx'
+import D3BarChart from './components/hookD3Component.jsx'
 
 function App() {
+let rectData = []
+for (let i=0;i<40;i++) {
+
+  let newY = 20 + Math.random()*20 - 10
+  let newH = 30 - newY
+
+
+rectData.push({
+x: i*11,
+y: newY,
+height: newH,
+width: 10
+})
+}
+
+/* next -  throw some functionality in to edit the d3 bar data */
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Thingy className="Thingy" text="two or three"/>
+        <Normal 
+        text="Jam Sandwiches, 10 for a pound"
+        height="100"
+        width="200"
+        />
+        <D3BarChart
+        data={rectData}/>
+      
     </div>
   );
 }
