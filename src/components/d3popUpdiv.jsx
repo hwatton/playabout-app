@@ -10,12 +10,12 @@ function PopUpData(props) {
     scale: 0.6
   };
 
-  let rectData = [];
+  let rectDataNew = [];
   for (let i = 0; i < 5; i++) {
     let newY = 20 + Math.random() * 20 - 10;
     let newH = 30 - newY;
 
-    rectData.push({
+    rectDataNew.push({
       x: i * 22,
       y: newY,
       height: newH,
@@ -35,10 +35,11 @@ function PopUpData(props) {
             exit={defaultState}
             animate={{
               opacity: 1,
-              scale: 1
+              scale: 1,
+              rotate: 3600
             }}
           >
-            <D3BarChart data={rectData} width={120} />
+            <D3BarChart data={rectDataNew} width={120} height={30} />
           </motion.div>
         )}
       </AnimatePresence>

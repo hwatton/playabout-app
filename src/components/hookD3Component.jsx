@@ -27,7 +27,7 @@ const D3BarChart = (props) => {
     <svg
       className="d3-component"
       width={props.width}
-      height={200}
+      height={props.height}
       ref={d3Container}
     />
   );

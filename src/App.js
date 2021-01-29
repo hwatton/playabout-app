@@ -27,9 +27,10 @@ function App() {
     <div className="App">
       <Thingy className="Thingy" text="two or three" />
       <Normal text="Jam Sandwiches, 10 for a pound" height="100" width="200" />
-      <D3BarChart data={rectData} width={400} />
+      <D3BarChart data={rectData} width={400} height={50} />
       <Rotate />
       <PopUpData />
+      <Rotate />
     </div>
   );
 }
