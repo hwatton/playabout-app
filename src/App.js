@@ -26,8 +26,6 @@ function App() {
       <Thingy className="Thingy" text="two or three" />
       <Normal text="Jam Sandwiches, 10 for a pound" height="100" width="200" />
       <D3BarChart data={rectData} />
-
-      <Board knightPosition={[4, 7]} />
     </div>
   );
 }
