@@ -4,6 +4,8 @@ import Thingy from "./components/playground.jsx";
 import Board from "./components/board.jsx";
 import Normal from "./components/normal.jsx";
 import D3BarChart from "./components/hookD3Component.jsx";
+import Rotate from "./components/motionDiv.jsx";
+import PopUpData from "./components/d3popUpdiv.jsx";
 
 function App() {
   let rectData = [];
@@ -25,7 +27,9 @@ function App() {
     <div className="App">
       <Thingy className="Thingy" text="two or three" />
       <Normal text="Jam Sandwiches, 10 for a pound" height="100" width="200" />
-      <D3BarChart data={rectData} />
+      <D3BarChart data={rectData} width={400} />
+      <Rotate />
+      <PopUpData />
     </div>
   );
 }

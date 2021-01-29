@@ -24,7 +24,12 @@ const D3BarChart = (props) => {
   }, [props.data, d3Container.current]);
 
   return (
-    <svg className="d3-component" width={400} height={200} ref={d3Container} />
+    <svg
+      className="d3-component"
+      width={props.width}
+      height={200}
+      ref={d3Container}
+    />
   );
 };
 
