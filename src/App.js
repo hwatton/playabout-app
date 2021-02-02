@@ -1,24 +1,20 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React, { useState } from "react";
 import Thingy from "./components/playground.jsx";
 import Board from "./components/board.jsx";
 import Normal from "./components/normal.jsx";
 import D3BarChart from "./components/hookD3Component.jsx";
 import Rotate from "./components/motionDiv.jsx";
 import PopUpData from "./components/d3popUpdiv.jsx";
+import dataMaker from "./components/functions.js";
 
 function App() {
-  let rectData = [];
-  for (let i = 0; i < 40; i++) {
-    let newY = 20 + Math.random() * 20 - 10;
-    let newH = 30 - newY;
+  const [data, setData] = useState(dataMaker(40));
 
-    rectData.push({
-      x: i * 11,
-      y: newY,
-      height: newH,
-      width: 10
-    });
+  function reloadData() {
+    let d = dataMaker(40);
+    setData(d);
   }
 
   /* next -  throw some functionality in to edit the d3 bar data */
@@ -27,7 +23,7 @@ function App() {
     <div className="App">
       <Thingy className="Thingy" text="two or three" />
       <Normal text="Jam Sandwiches, 10 for a pound" height="100" width="200" />
-      <D3BarChart data={rectData} width={400} height={50} />
+      <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
       <Rotate />
       <PopUpData />
       <Rotate />

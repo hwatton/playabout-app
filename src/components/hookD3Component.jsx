@@ -7,9 +7,17 @@ const D3BarChart = (props) => {
   useEffect(() => {
     const svgC = d3.select(d3Container.current);
 
-    const update = svgC.append("g").selectAll("rect").data(props.data);
+    svgC.select(".sqGroup").remove();
 
-    update.exit();
+    const update = svgC
+      .append("g")
+      .attr("class", "sqGroup")
+      .selectAll("rect")
+      .data(props.data);
+
+    update.enter();
+
+    console.log(props.data);
 
     update
       .enter()
@@ -20,8 +28,14 @@ const D3BarChart = (props) => {
       .attr("height", (d) => d.height)
       .attr("fill", () => {
         return d3.interpolateRainbow(Math.random());
+      })
+      .on("click", () => {
+        console.log("clicked");
+        props.clicky();
       });
-  }, [props.data, d3Container.current]);
+
+    update.exit().remove();
+  }, [props]);
 
   return (
     <svg
