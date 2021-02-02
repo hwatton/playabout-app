@@ -17,8 +17,6 @@ const D3BarChart = (props) => {
 
     update.enter();
 
-    console.log(props.data);
-
     update
       .enter()
       .append("rect")

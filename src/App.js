@@ -10,6 +10,15 @@ import PopUpData from "./components/d3popUpdiv.jsx";
 import dataMaker from "./components/functions.js";
 
 function App() {
+  let onOrOff = {
+    thing: true,
+    normal: true,
+    d3: true,
+    rotate: true,
+    popUp: true
+  };
+
+  const [load, changeLoad] = useState(onOrOff);
   const [data, setData] = useState(dataMaker(40));
 
   function reloadData() {
@@ -17,15 +26,35 @@ function App() {
     setData(d);
   }
 
+  function randomLoader() {
+    let rB = Math.random() < 0.5;
+
+    let newObj = {};
+
+    for (let [k, v] of Object.entries(load)) {
+      newObj[k] = Math.random() < 0.5;
+    }
+    changeLoad(newObj);
+  }
+
   /* next -  throw some functionality in to edit the d3 bar data */
 
   return (
     <div className="App">
-      <Thingy className="Thingy" text="two or three" />
-      <Normal text="Jam Sandwiches, 10 for a pound" height="100" width="200" />
-      <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
-      <Rotate />
-      <PopUpData />
+      <button onClick={randomLoader}>LOAD random conditional</button>
+      {load.thing && <Thingy className="Thingy" text="two or three" />}
+      {load.normal && (
+        <Normal
+          text="Jam Sandwiches, 10 for a pound"
+          height="100"
+          width="200"
+        />
+      )}
+      {load.d3 && (
+        <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
+      )}
+      {load.d3 && <Rotate />}
+      {load.d3 && <PopUpData />}
       <Rotate />
     </div>
   );
