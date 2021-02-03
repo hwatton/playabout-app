@@ -39,7 +39,7 @@ function PopUpData(props) {
               rotate: 3600
             }}
           >
-            <D3BarChart data={rectDataNew} width={120} height={30} />
+            <D3BarChart data={props.data} width={120} height={30} />
           </motion.div>
         )}
       </AnimatePresence>

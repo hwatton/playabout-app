@@ -27,9 +27,9 @@ const D3BarChart = (props) => {
       .attr("fill", () => {
         return d3.interpolateRainbow(Math.random());
       })
-      .on("click", () => {
-        console.log("clicked");
+      .on("click", (d, i) => {
         props.clicky();
+        console.log(d);
       });
 
     update.exit().remove();

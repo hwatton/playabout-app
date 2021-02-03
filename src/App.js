@@ -23,6 +23,7 @@ function App() {
 
   function reloadData() {
     let d = dataMaker(40);
+
     setData(d);
   }
 
@@ -41,21 +42,25 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={randomLoader}>LOAD random conditional</button>
-      {load.thing && <Thingy className="Thingy" text="two or three" />}
-      {load.normal && (
-        <Normal
-          text="Jam Sandwiches, 10 for a pound"
-          height="100"
-          width="200"
-        />
-      )}
-      {load.d3 && (
-        <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
-      )}
-      {load.d3 && <Rotate />}
-      {load.d3 && <PopUpData />}
-      <Rotate />
+      <div className="topBit">
+        <button onClick={randomLoader}>LOAD random conditional</button>
+      </div>
+      <div className="secondBit">
+        {load.thing && <Thingy className="Thingy" text="two or three" />}
+        {load.normal && (
+          <Normal
+            text="Jam Sandwiches, 10 for a pound"
+            height="100"
+            width="200"
+          />
+        )}
+        {load.d3 && (
+          <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
+        )}
+        {load.d3 && <Rotate />}
+        {load.d3 && <PopUpData data={dataMaker(10)} />}
+        <Rotate />
+      </div>
     </div>
   );
 }
