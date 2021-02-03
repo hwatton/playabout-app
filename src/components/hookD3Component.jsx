@@ -29,7 +29,6 @@ const D3BarChart = (props) => {
       })
       .on("click", (d, i) => {
         props.clicky();
-        console.log(d);
       });
 
     update.exit().remove();
