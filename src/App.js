@@ -11,7 +11,7 @@ import dataMaker from "./components/functions.js";
 
 function App() {
   let onOrOff = {
-    thing: true,
+    thing: false,
     normal: true,
     d3: true,
     rotate: true,
@@ -28,8 +28,6 @@ function App() {
   }
 
   function randomLoader() {
-    let rB = Math.random() < 0.5;
-
     let newObj = {};
 
     for (let [k, v] of Object.entries(load)) {
@@ -59,7 +57,6 @@ function App() {
         )}
         {load.d3 && <Rotate />}
         {load.d3 && <PopUpData data={dataMaker(10)} />}
-        <Rotate />
       </div>
     </div>
   );
