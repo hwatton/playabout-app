@@ -1,39 +1,93 @@
-import * as d3 from "d3"
-import React, {useRef, useEffect} from "react"
+import * as d3 from "d3";
+import React, { useState, useRef, useEffect } from "react";
+import HoverDiv from "./hoverDiv.jsx";
 
-const D3BarChart = (props) =>{
+const D3BarChart = (props) => {
+  const d3Container = useRef(null);
 
-    const d3Container = useRef(null)
+  const [hover, setHover] = useState({
+    boolean: false,
+    x_pos: null,
+    y_pos: null,
+    text: null,
+    col: null
+  });
 
-useEffect(()=>{
-
+  useEffect(() => {
     const svgC = d3.select(d3Container.current);
 
-    const update = svgC.append("g")
-    .selectAll("rect")
-    .data(props.data)
+    svgC.select(".sqGroup").remove();
 
-    update.enter()
-    .append("rect")
-    .attr("x", (d=>d.x))
-    .attr("y", (d=>d.y))
-    .attr("width", (d=>d.width))
-    .attr("height", (d=>d.height))
-    .attr("fill", ()=>{return d3.interpolateRainbow(Math.random())})
+    console.log(props.data);
+    let newObj = props.data.map((el) => {
+      let o = Object.assign({}, el);
+      o.colour = d3.interpolateRainbow(Math.random());
+      return o;
+    });
 
-}, [props.data, d3Container.current])
+    console.log(newObj);
 
-return (
-    <svg
+    const update = svgC
+      .append("g")
+      .attr("class", "sqGroup")
+      .selectAll("rect")
+      .data(newObj);
+
+    update.enter();
+
+    update
+      .enter()
+      .append("rect")
+      .attr("x", (d) => d.x)
+      .attr("y", (d) => d.y)
+      .attr("width", (d) => d.width)
+      .attr("height", (d) => d.height)
+      .attr("fill", (d) => d.colour)
+      .on("mouseover", (d, i) => {
+        console.log(d);
+        setHover({
+          boolean: true,
+          x_pos: d.clientX,
+          y_pos: d.clientY,
+          text: i.name,
+          col: i.colour
+        });
+      })
+      .on("mouseout", (d, i) => {
+        console.log("left");
+        setHover({
+          boolean: false,
+          x_pos: null,
+          y_pos: null,
+          text: null,
+          col: null
+        });
+      })
+      .on("click", () => {
+        props.clicky();
+      });
+
+    update.exit().remove();
+  }, [props]);
+
+  return (
+    <div>
+      {hover && (
+        <HoverDiv
+          col={hover.col}
+          name={hover.text}
+          x={hover.x_pos}
+          y={hover.y_pos}
+        />
+      )}
+      <svg
         className="d3-component"
-        width={400}
-        height={200}
+        width={props.width}
+        height={props.height}
         ref={d3Container}
-    />
-);
+      />
+    </div>
+  );
+};
 
-
-
-}
-
-export default D3BarChart
+export default D3BarChart;

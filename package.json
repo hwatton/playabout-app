@@ -7,6 +7,7 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
     "d3": "^6.4.0",
+    "framer-motion": "3.2.2-rc.1",
     "jstat": "^1.9.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
