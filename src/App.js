@@ -1,11 +1,9 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import React, { useState } from "react";
 import Thingy from "./components/playground.jsx";
-import Board from "./components/board.jsx";
 import Normal from "./components/normal.jsx";
 import D3BarChart from "./components/hookD3Component.jsx";
-import Rotate from "./components/motionDiv.jsx";
 import PopUpData from "./components/d3popUpdiv.jsx";
 import dataMaker from "./components/functions.js";
 
@@ -58,7 +56,7 @@ function App() {
         {load.d3 && (
           <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
         )}
-        {load.d3 && <Rotate />}
+    
         {load.d3 && <PopUpData data={dataMaker(10)} />}
       </div>
     </div>

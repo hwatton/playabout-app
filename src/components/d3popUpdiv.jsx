@@ -13,7 +13,7 @@ function PopUpData(props) {
   let rectDataNew = [];
   for (let i = 0; i < 5; i++) {
     let newY = 20 + Math.random() * 20 - 10;
-    let newH = 30 - newY;
+    let newH = 50 - newY;
 
     rectDataNew.push({
       x: i * 22,
