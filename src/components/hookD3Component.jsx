@@ -52,17 +52,18 @@ const D3BarChart = (props) => {
           text: i.name,
           col: i.colour
         });
+        d3.select("#hoverDiv").style("opacity", "90%");
+        setTimeout(() => {
+          setHover({
+            boolean: false,
+            x_pos: null,
+            y_pos: null,
+            text: null,
+            col: null
+          });
+        }, 1500);
       })
-      .on("mouseout", (d, i) => {
-        console.log("left");
-        setHover({
-          boolean: false,
-          x_pos: null,
-          y_pos: null,
-          text: null,
-          col: null
-        });
-      })
+
       .on("click", () => {
         props.clicky();
       });
