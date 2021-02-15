@@ -6,6 +6,7 @@ import Normal from "./components/normal.jsx";
 import D3BarChart from "./components/hookD3Component.jsx";
 import PopUpData from "./components/d3popUpdiv.jsx";
 import dataMaker from "./components/functions.js";
+import StyledDiv from "./components/styleD/styledWithTailwind.jsx";
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
     normal: true,
     d3: true,
     rotate: true,
-    popUp: true
+    popUp: true,
+    styledBit: true
   };
 
   const [load, changeLoad] = useState(onOrOff);
@@ -58,6 +60,7 @@ function App() {
         )}
     
         {load.d3 && <PopUpData data={dataMaker(10)} />}
+        {load.styledBit && <StyledDiv clickAction={randomLoader} ridiculousMessage="checkOut at the checkout please"/>}
       </div>
     </div>
   );

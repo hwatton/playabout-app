@@ -72,7 +72,7 @@ const D3BarChart = (props) => {
   }, [props]);
 
   return (
-    <div>
+    <div className="container justify-center items-center sm">
       {hover && (
         <HoverDiv
           col={hover.col}
@@ -81,12 +81,14 @@ const D3BarChart = (props) => {
           y={hover.y_pos}
         />
       )}
+      <div className="container">
       <svg
         className="d3-component"
         width={props.width}
         height={props.height}
         ref={d3Container}
       />
+      </div>
     </div>
   );
 };
