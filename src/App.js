@@ -1,13 +1,12 @@
-
 import "./App.css";
 import React, { useState } from "react";
 import Thingy from "./components/playground.jsx";
 import Normal from "./components/normal.jsx";
 import D3BarChart from "./components/hookD3Component.jsx";
 import PopUpData from "./components/d3popUpdiv.jsx";
+import InterGraph from "./components/interactiveGraph.jsx";
 import dataMaker from "./components/functions.js";
 import StyledDiv from "./components/styleD/styledWithTailwind.jsx";
-
 
 function App() {
   let onOrOff = {
@@ -16,7 +15,8 @@ function App() {
     d3: true,
     rotate: true,
     popUp: true,
-    styledBit: true
+    styledBit: true,
+    iGraph: false
   };
 
   const [load, changeLoad] = useState(onOrOff);
@@ -37,7 +37,32 @@ function App() {
     changeLoad(newObj);
   }
 
+  function graphLoader() {
+    let turnemOff;
 
+    if (!load.iGraph) {
+      turnemOff = {
+        thing: false,
+        normal: false,
+        d3: false,
+        rotate: false,
+        popUp: false,
+        styledBit: false,
+        iGraph: true
+      };
+    } else {
+      turnemOff = {
+        thing: true,
+        normal: true,
+        d3: true,
+        rotate: true,
+        popUp: true,
+        styledBit: true,
+        iGraph: false
+      };
+    }
+    changeLoad(turnemOff);
+  }
 
   /* next -  throw some functionality in to edit the d3 bar data */
 
@@ -45,6 +70,7 @@ function App() {
     <div className="App">
       <div className="topBit">
         <button onClick={randomLoader}>LOAD random conditional</button>
+        <button onClick={graphLoader}>Interactive Graph</button>
       </div>
       <div className="secondBit">
         {load.thing && <Thingy className="Thingy" text="two or three" />}
@@ -58,9 +84,15 @@ function App() {
         {load.d3 && (
           <D3BarChart clicky={reloadData} data={data} width={400} height={50} />
         )}
-    
+
         {load.d3 && <PopUpData data={dataMaker(10)} />}
-        {load.styledBit && <StyledDiv clickAction={randomLoader} ridiculousMessage="checkOut at the checkout please"/>}
+        {load.styledBit && (
+          <StyledDiv
+            clickAction={randomLoader}
+            ridiculousMessage="checkOut at the checkout please"
+          />
+        )}
+        {load.iGraph && <InterGraph />}
       </div>
     </div>
   );
