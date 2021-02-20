@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LineGraph from "./linegraph.jsx"
 
 //work out how to pass the value change back up to the state
 
@@ -20,10 +21,10 @@ function InterGraph(props) {
     let obj = data.find((x) => x.id === e.target.id);
     let index = data.indexOf(obj);
     let dt = [...data];
-    dt[index].cv = e.target.value;
+    dt[index].cv = parseInt(e.target.value);
 
     setData(dt);
-    console.log(data);
+
   }
 
   const peez = data.map((item, i) => (
@@ -32,13 +33,15 @@ function InterGraph(props) {
       id={item.id}
       key={item + "_" + i}
       onChange={(e) => newBallsPlease(e)}
-      type="text"
+      type="number"
+      step="1"
       value={item.cv}
     ></input>
   ));
 
   return (<div className="interactiveGraph">
     <div className="inputHolder">{peez}</div>
+    <LineGraph testInfo={data}/>
     </div>);
 }
 
