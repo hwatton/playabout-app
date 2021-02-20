@@ -1,15 +1,19 @@
 import { useState } from "react";
+import BarChart from "./barChart.jsx"
 import LineGraph from "./linegraph.jsx"
 
 //work out how to pass the value change back up to the state
 
 function InterGraph(props) {
   const startingData = [];
+  const lineColour = Math.random()
 
   for (let i = 0; i < 10; i++) {
     startingData.push({
       cv: Math.floor(Math.random() * 10),
-      id: "id_" + i
+      id: "id_" + i,
+      colourNumber: Math.random(),
+      lineColour: lineColour
     });
   }
 
@@ -41,7 +45,10 @@ function InterGraph(props) {
 
   return (<div className="interactiveGraph">
     <div className="inputHolder">{peez}</div>
+    <div className="chartHolder">
+    <BarChart testInfo={data}/>
     <LineGraph testInfo={data}/>
+    </div>
     </div>);
 }
 

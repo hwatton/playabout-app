@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import React, {useRef, useEffect } from "react";
 
-const LineGraph = (props) => {
+const BarChart = (props) => {
     const d3Container = useRef(null);
     const svgHeight = 200
     const svgWidth = 300
@@ -19,7 +19,7 @@ const LineGraph = (props) => {
 
 
         const yScale = d3.scaleLinear()
-        .range([180,0])
+        .range([0, 180])
         .domain([lowestVal,cvExtent[1]])
 
         const yAxisScale = d3.scaleLinear()
@@ -29,49 +29,43 @@ const LineGraph = (props) => {
         const xScale = d3.scaleLinear()
         .range([20,280])
         .domain([0,newData.length])
-
-        const lineFunc = d3.line()
-        .x(d=>xScale(d.x))
-        .y(d=>yScale(d.y)+10) //adjust for manually added padding
-        .curve(d3.curveCardinal.tension(0))
-
-        let lineData = []
-        for (let i =0;i<newData.length; i++) {
-            lineData.push(
-                {x:(i+0.5),y: newData[i].cv }
-            )
-        }
      
 
-        svgC.select(".pathGroup").remove();
+        svgC.select(".sqGroup").remove();
         //console.log(newData)
         const update = svgC
       .append("g")
-      .attr("class", "pathGroup")
-      .selectAll("path")
+      .attr("class", "sqGroup")
+      .selectAll("rect")
       .data(newData);
 
-      update.enter()
-      .append("path")
-      .attr("class", "linePath")
-      .attr("d", lineFunc(lineData))
-      .style("stroke", (d)=>{return d3.interpolateTurbo(d.lineColour)})
-    
+    update.enter();
+
+    update
+      .enter()
+      .append("rect")
+      .attr("x", (d,i) => {return xScale(i)})
+      .attr("y", (d) => {return 190 - yScale(d.cv)})
+      .attr("width", 0.9*(260/newData.length))
+      .attr("height", (d) => yScale(d.cv))
+      .attr("fill", (d)=> {return d3.interpolateTurbo(d.colourNumber)})
+
+      update.exit().remove();
 
       /* axes */
 
-      d3.selectAll(".axisgroupLine")
+      d3.selectAll(".axisgroup")
       .remove()
 
       const axisLeft = svgC.append("g")
-      .attr("class", "axisgroupLine")
+      .attr("class", "axisgroup")
       .attr("transform", "translate(20,10)")
       axisLeft.call(
           d3.axisLeft(yAxisScale)
           .ticks(5))
 
         const axisBottom = svgC.append("g")
-        .attr("class", "axisgroupLine")
+        .attr("class", "axisgroup")
         .attr("transform", "translate(0, 190)") 
 
         axisBottom.call(
@@ -95,5 +89,5 @@ const LineGraph = (props) => {
 
 }
 
-export default LineGraph
+export default BarChart
 

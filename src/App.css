@@ -70,3 +70,19 @@
 .testinfo{
   color: white;
 }
+
+.axisgroup{
+  stroke: white;
+  color: white;
+}
+
+.axisgroupLine{
+  stroke: white;
+  color: white;
+}
+
+.chartHolder{
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
