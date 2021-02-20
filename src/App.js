@@ -41,6 +41,8 @@ function App() {
     let turnemOff;
 
     if (!load.iGraph) {
+
+
       turnemOff = {
         thing: false,
         normal: false,
@@ -51,6 +53,8 @@ function App() {
         iGraph: true
       };
     } else {
+
+
       turnemOff = {
         thing: true,
         normal: true,
@@ -64,13 +68,14 @@ function App() {
     changeLoad(turnemOff);
   }
 
+
   /* next -  throw some functionality in to edit the d3 bar data */
 
   return (
     <div className="App">
       <div className="topBit">
         <button onClick={randomLoader}>LOAD random conditional</button>
-        <button onClick={graphLoader}>Interactive Graph</button>
+        <button className="graphBtn" onClick={graphLoader}>Load Interactive Graph</button>
       </div>
       <div className="secondBit">
         {load.thing && <Thingy className="Thingy" text="two or three" />}

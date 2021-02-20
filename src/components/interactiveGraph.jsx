@@ -17,10 +17,10 @@ function InterGraph(props) {
   function newBallsPlease(e) {
     //console.log(event.target.id);
 
-    let obj = data.find((x) => x.id === event.target.id);
+    let obj = data.find((x) => x.id === e.target.id);
     let index = data.indexOf(obj);
     let dt = [...data];
-    dt[index].cv = event.target.value;
+    dt[index].cv = e.target.value;
 
     setData(dt);
     console.log(data);
@@ -37,7 +37,9 @@ function InterGraph(props) {
     ></input>
   ));
 
-  return <div className="inputHolder">{peez}</div>;
+  return (<div className="interactiveGraph">
+    <div className="inputHolder">{peez}</div>
+    </div>);
 }
 
 export default InterGraph;

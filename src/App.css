@@ -44,4 +44,25 @@
 .graphInput {
   width: 7%;
   margin: 0.2%;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.interactiveGraph{
+  padding: 30px;
+  background-color: black;
+  height: 100%;
+}
+
+.graphBtn{
+  margin: 20px;
+  color: white;
+  padding: 5px;
+  background-color: #ee11ee; 
+  border-radius: 8px;
+}
+
+.graphBtn:hover{
+  background-color: #ffaaff; 
+  color: red;
 }
