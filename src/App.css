@@ -35,4 +35,13 @@
   fill: none;
 }
 
+.inputHolder {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
 
+.graphInput {
+  width: 7%;
+  margin: 0.2%;
+}
