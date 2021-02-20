@@ -84,5 +84,8 @@
 .chartHolder{
   display: flex;
   flex-direction: row;
-  padding: 20px;
+}
+
+.interactiveGraph{
+  text-align: center;
 }
