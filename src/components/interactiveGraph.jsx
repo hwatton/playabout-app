@@ -1,23 +1,21 @@
 import { useState } from "react";
-import BarChart from "./graphs/barChart.jsx"
-import LineGraph from "./graphs/linegraph.jsx"
-import PieChart from "./graphs/pieChart.jsx"
-
+import BarChart from "./graphs/barChart.jsx";
+import LineGraph from "./graphs/linegraph.jsx";
+import PieChart from "./graphs/pieChart.jsx";
 
 //work out how to pass the value change back up to the state
 
 function InterGraph(props) {
   const startingData = [];
-  const lineColour = Math.random()
-  const dataLength = 10
-  let colStep = 1/(dataLength-1)
-
+  const lineColour = Math.random();
+  const dataLength = 10;
+  let colStep = 1 / (dataLength - 1);
 
   for (let i = 0; i < dataLength; i++) {
     startingData.push({
       cv: Math.floor(Math.random() * 10),
       id: "id_" + i,
-      colourNumber: colStep*i,
+      colourNumber: colStep * i,
       lineColour: lineColour
     });
   }
@@ -33,29 +31,33 @@ function InterGraph(props) {
     dt[index].cv = parseInt(e.target.value);
 
     setData(dt);
-
   }
 
   const peez = data.map((item, i) => (
-    <input
-      className="graphInput"
-      id={item.id}
-      key={item + "_" + i}
-      onChange={(e) => newBallsPlease(e)}
-      type="number"
-      step="1"
-      value={item.cv}
-    ></input>
+    <div>
+      <p className="dataText">Data:{i + 1}</p>
+      <input
+        className="graphInput"
+        id={item.id}
+        key={item + "_" + i}
+        onChange={(e) => newBallsPlease(e)}
+        type="number"
+        step="1"
+        value={item.cv}
+      ></input>
+    </div>
   ));
 
-  return (<div className="interactiveGraph">
-    <div className="inputHolder">{peez}</div>
-    <div className="chartHolder">
-    <BarChart testInfo={data}/>
-    <LineGraph testInfo={data}/>
-    <PieChart testInfo={data} />
+  return (
+    <div className="interactiveGraph">
+      <div className="inputHolder">{peez}</div>
+      <div className="chartHolder">
+        <BarChart testInfo={data} />
+        <LineGraph testInfo={data} />
+        <PieChart testInfo={data} />
+      </div>
     </div>
-    </div>);
+  );
 }
 
 export default InterGraph;

@@ -38,54 +38,87 @@
 .inputHolder {
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .graphInput {
-  width: 7%;
-  margin: 0.2%;
+  width: 30px;
+  margin: 2px;
   border-radius: 8px;
   text-align: center;
+  color: white;
+  background-color: black;
+  border-width: 0.5px;
+  font-size: 12px;
+  padding: 1px;
 }
 
-.interactiveGraph{
+.dataText {
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8px;
+}
+
+.interactiveGraph {
   padding: 30px;
-  background-color: black;
+  background-color: rgb(17, 17, 17);
   height: 100%;
 }
 
-.graphBtn{
+.graphBtn {
   margin: 20px;
   color: white;
   padding: 5px;
-  background-color: #ee11ee; 
+  background-color: #ee11ee;
   border-radius: 8px;
 }
 
-.graphBtn:hover{
-  background-color: #ffaaff; 
+.graphBtn:hover {
+  background-color: #ffaaff;
   color: red;
 }
 
-.testinfo{
+.testinfo {
   color: white;
 }
 
-.axisgroup{
+.axisgroup {
   stroke: white;
   color: white;
 }
 
-.axisgroupLine{
+.axisgroupLine {
   stroke: white;
   color: white;
 }
 
-.chartHolder{
+.chartHolder {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.interactiveGraph{
+.interactiveGraph {
   text-align: center;
+}
+
+.chartContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hoverData {
+  text-align: left;
+  padding: 2px;
+  display: inline-block;
+  width: 96px;
+  height: 180px;
+  background-color: rgb(17, 17, 17);
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.hoverData .bold {
+  font-weight: 600;
 }
