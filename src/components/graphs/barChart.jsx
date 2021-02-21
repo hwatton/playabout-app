@@ -48,7 +48,7 @@ const BarChart = (props) => {
       .attr("y", (d) => {return 190 - yScale(d.cv)})
       .attr("width", 0.9*(260/newData.length))
       .attr("height", (d) => yScale(d.cv))
-      .attr("fill", (d)=> {return d3.interpolateTurbo(d.colourNumber)})
+      .attr("fill", (d)=> {return d3.interpolateCool(d.colourNumber)})
 
       update.exit().remove();
 

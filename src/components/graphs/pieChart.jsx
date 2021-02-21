@@ -14,9 +14,25 @@ const PieChart = (props) => {
 
         const pie = d3.pie()
         .value(function(d) {return d.cv })
-        var data_ready = pie(newData)
+        const data_ready = pie(newData)
+
+        let arcFunc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(90)
 
      console.log(data_ready)
+let pathData = []
+     data_ready.forEach((d)=>{
+
+        arcFunc
+        .startAngle(d.startAngle)
+        .endAngle(d.endAngle)
+
+        let tempObj = arcFunc(d.cv)
+pathData.push({path:tempObj, colour:d.data.colourNumber})
+     })
+
+     console.log(pathData)
 
         svgC.select(".pathGroup").remove();
         //console.log(newData)
@@ -25,7 +41,7 @@ const PieChart = (props) => {
       .attr("class", "pathGroup")
       .attr("transform", "translate(" + svgWidth/2 + " " + svgHeight/2 + ")")
       .selectAll("path")
-      .data(data_ready);
+      .data(pathData);
  /*
       update.enter()
       .append("path")
@@ -37,8 +53,12 @@ const PieChart = (props) => {
 update
    .enter()
    .append('path')
-   .attr('d', /* work out what to out in here! */   )
-   .attr('fill', function(d){ return d3.interpolateTurbo(d.lineColour) })
+   .attr('d', (d)=>{return d.path}   )
+   .attr('fill', function(d){ 
+    console.log(d)   
+    return d3.interpolateCool(d.colour) })
+    .style("stroke", "black")
+    .style("stroke-width", "1px")
 
       /* axes */
 

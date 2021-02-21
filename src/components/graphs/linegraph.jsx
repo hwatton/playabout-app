@@ -33,7 +33,7 @@ const LineGraph = (props) => {
         const lineFunc = d3.line()
         .x(d=>xScale(d.x))
         .y(d=>yScale(d.y)+10) //adjust for manually added padding
-        .curve(d3.curveCardinal.tension(0))
+        .curve(d3.curveCardinal.tension(0.5))
 
         let lineData = []
         for (let i =0;i<newData.length; i++) {
@@ -55,7 +55,7 @@ const LineGraph = (props) => {
       .append("path")
       .attr("class", "linePath")
       .attr("d", lineFunc(lineData))
-      .style("stroke", (d)=>{return d3.interpolateTurbo(d.lineColour)})
+      .style("stroke", (d)=>{return d3.interpolateCool(d.lineColour)})
     
 
       /* axes */

@@ -9,12 +9,15 @@ import PieChart from "./graphs/pieChart.jsx"
 function InterGraph(props) {
   const startingData = [];
   const lineColour = Math.random()
+  const dataLength = 10
+  let colStep = 1/(dataLength-1)
 
-  for (let i = 0; i < 10; i++) {
+
+  for (let i = 0; i < dataLength; i++) {
     startingData.push({
       cv: Math.floor(Math.random() * 10),
       id: "id_" + i,
-      colourNumber: Math.random(),
+      colourNumber: colStep*i,
       lineColour: lineColour
     });
   }
