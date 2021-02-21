@@ -5,6 +5,7 @@ const PieChart = (props) => {
   const d3Container = useRef(null);
   const svgHeight = 200;
   const svgWidth = 300;
+  let pieDataTimer;
 
   useEffect(() => {
     const svgC = d3.select(d3Container.current);
@@ -79,6 +80,11 @@ const PieChart = (props) => {
         let textFour = "Index: " + (d.index + 1);
 
         d3.select(".textFour").text(textFour);
+      })
+      .on("mouseout", () => {
+        pieDataTimer = window.setTimeout(() => {
+          d3.selectAll(".pieText").text("");
+        }, 3500);
       });
 
     /* axes */
@@ -95,10 +101,10 @@ const PieChart = (props) => {
       />
       <div className="hoverData">
         <br />
-        <p className="textOne bold"></p>
-        <p className="textTwo"></p>
-        <p className="textThree"></p>
-        <p className="textFour"></p>
+        <p className="textOne pieText bold"></p>
+        <p className="textTwo pieText "></p>
+        <p className="textThree pieText "></p>
+        <p className="textFour pieText "></p>
       </div>
     </div>
   );
