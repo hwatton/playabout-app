@@ -1,6 +1,8 @@
 import { useState } from "react";
-import BarChart from "./barChart.jsx"
-import LineGraph from "./linegraph.jsx"
+import BarChart from "./graphs/barChart.jsx"
+import LineGraph from "./graphs/linegraph.jsx"
+import PieChart from "./graphs/pieChart.jsx"
+
 
 //work out how to pass the value change back up to the state
 
@@ -48,6 +50,7 @@ function InterGraph(props) {
     <div className="chartHolder">
     <BarChart testInfo={data}/>
     <LineGraph testInfo={data}/>
+    <PieChart testInfo={data} />
     </div>
     </div>);
 }
