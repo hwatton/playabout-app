@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 }
 const Rotate = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const constraintsRef = useRef()
 
   const variant = {
@@ -28,7 +29,7 @@ const Rotate = () => {
       <br/>
       <button 
       className="Button motion-button"
-      onClick={() => setIsActive(!isActive)}>find it!</button>
+      onClick={() => setIsActive(!isActive)}>{isActive ? "Drag it!" : "Find it!"}</button>
       <motion.div
         className="motionDiv"
         variants={variant}
@@ -51,7 +52,8 @@ const Rotate = () => {
         height: 150,
         borderRadius: 30,
         backgroundColor: dragColour,
-        cursor: "grab"
+        cursor: "grab",
+        alignItems: "center"
       }}
       drag
       dragConstraints={constraintsRef} 
@@ -59,16 +61,26 @@ const Rotate = () => {
       onDrag = {(event, info)=>{
         console.log(event)
         console.log(info)
+        setIsFinished(false)
         setDragColour("red")
       }}
       onDragEnd = {(event, info)=>{
         console.log(event)
         console.log(info)
+        setIsFinished(true)
         setDragColour("white")
+        setTimeout(d=>{
+          setIsFinished(false)
+        }, 2000)
+
+
       }}
 
       whileTap={{ cursor: "grabbing" }}
-    /></div>
+    ><div><p
+    style={{
+      color: "black"
+    }}>{isFinished ? "Thanks for that." : null}</p></div></motion.div></div>
       </motion.div>
       
     </div>
