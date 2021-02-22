@@ -6,8 +6,13 @@
   text-align: center;
   background-color: magenta;
   color: white;
+  width: 300px;
+  display: inline-block;
+}
+
+.md-holder {
   width: 100%;
-  display: block;
+  height: 200px;
 }
 
 .Thingy {

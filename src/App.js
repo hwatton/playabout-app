@@ -7,6 +7,7 @@ import PopUpData from "./components/d3popUpdiv.jsx";
 import InterGraph from "./components/interactiveGraph.jsx";
 import dataMaker from "./components/functions.js";
 import StyledDiv from "./components/styleD/styledWithTailwind.jsx";
+import Rotate from "./components/motionDiv.jsx";
 
 function App() {
   let onOrOff = {
@@ -95,6 +96,7 @@ function App() {
           />
         )}
         {load.iGraph && <InterGraph />}
+        {load.rotate && <Rotate />}
       </div>
     </div>
   );

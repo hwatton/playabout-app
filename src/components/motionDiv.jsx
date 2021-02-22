@@ -21,14 +21,16 @@ const Rotate = () => {
   };
 
   return (
-    <motion.div
-      className="motionDiv"
-      variants={variant}
-      onClick={() => setIsActive(!isActive)}
-      animate={isActive ? "active" : "inactive"}
-    >
-      DIV
-    </motion.div>
+    <div className="md-holder">
+      <motion.div
+        className="motionDiv"
+        variants={variant}
+        onClick={() => setIsActive(!isActive)}
+        animate={isActive ? "active" : "inactive"}
+      >
+        DIV
+      </motion.div>
+    </div>
   );
 };
 
