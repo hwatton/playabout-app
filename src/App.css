@@ -57,7 +57,7 @@
 }
 
 .graphInput {
-  width: 30px;
+  width: 40px;
   margin: 2px;
   border-radius: 8px;
   text-align: center;
@@ -71,7 +71,7 @@
 .dataText {
   color: white;
   font-family: "Courier New", Courier, monospace;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .interactiveGraph {

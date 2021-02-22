@@ -35,7 +35,7 @@ function InterGraph(props) {
 
   const peez = data.map((item, i) => (
     <div>
-      <p className="dataText">Data:{i + 1}</p>
+      <p className="dataText">ind:{i + 1}</p>
       <input
         className="graphInput"
         id={item.id}
@@ -51,6 +51,7 @@ function InterGraph(props) {
   return (
     <div className="interactiveGraph">
       <div className="inputHolder">{peez}</div>
+      <br/>
       <div className="chartHolder">
         <BarChart testInfo={data} />
         <LineGraph testInfo={data} />
