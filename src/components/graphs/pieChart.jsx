@@ -18,7 +18,6 @@ const PieChart = (props) => {
 
     let arcFunc = d3.arc().innerRadius(0).outerRadius(90);
 
-    console.log(data_ready);
     let pathData = [];
     data_ready.forEach((d, i) => {
       arcFunc.startAngle(d.startAngle).endAngle(d.endAngle);
@@ -31,8 +30,6 @@ const PieChart = (props) => {
         index: i
       });
     });
-
-    console.log(pathData);
 
     svgC.select(".pathGroup").remove();
     //console.log(newData)
@@ -65,15 +62,16 @@ const PieChart = (props) => {
       .style("stroke", "black")
       .style("stroke-width", "1px")
       .on("mouseover", (e, d) => {
-        console.log(e);
-        console.log(d);
+        if (pieDataTimer) {
+          window.clearTimeout(pieDataTimer);
+        }
 
         let textTwo = "Value: " + d.number;
         d3.select(".textOne").text("Data");
 
         d3.select(".textTwo").text(textTwo);
 
-        let textThree = "Value: " + d3.interpolateCool(d.colour);
+        let textThree = "Colour: " + d3.interpolateCool(d.colour);
 
         d3.select(".textThree").text(textThree);
 

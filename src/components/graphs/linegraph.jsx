@@ -35,7 +35,7 @@ const LineGraph = (props) => {
       .line()
       .x((d) => xScale(d.x))
       .y((d) => yScale(d.y) + 10) //adjust for manually added padding
-      .curve(d3.curveCardinal.tension(0.5));
+      .curve(d3.curveCardinal.tension(0.75));
 
     let lineData = [];
     for (let i = 0; i < newData.length; i++) {
