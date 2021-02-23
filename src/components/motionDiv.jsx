@@ -22,7 +22,7 @@ const Rotate = () => {
     }
   };
 
-  const [dragColour, setDragColour] = useState("white");
+  const [dragColour, setDragColour] = useState({ div: "white", svg: "blue" });
 
   return (
     <div className="md-holder">
@@ -53,20 +53,21 @@ const Rotate = () => {
               width: 150,
               height: 150,
               borderRadius: 30,
-              backgroundColor: dragColour,
+              backgroundColor: dragColour.div,
               cursor: "grab",
               alignItems: "center"
             }}
             drag
             dragConstraints={constraintsRef}
-            dragElastic={0.4}
+            dragElastic={0.5}
             onDrag={() => {
               setIsFinished(false);
-              setDragColour("red");
+              setDragColour({ div: "red", svg: "green" });
             }}
             onDragEnd={() => {
               setIsFinished(true);
-              setDragColour("white");
+              setDragColour({ div: "white", svg: "blue" });
+
               setTimeout((d) => {
                 setIsFinished(false);
               }, 2000);
@@ -74,13 +75,13 @@ const Rotate = () => {
             whileTap={{ cursor: "grabbing" }}
           >
             <div>
-              <p
-                style={{
-                  color: "black"
-                }}
-              >
-                {isFinished ? "Thanks for that." : null}
-              </p>
+              <svg height="150" width="150">
+                <circle
+                  r="20"
+                  transform="translate(75, 75)"
+                  fill={dragColour.svg}
+                />
+              </svg>
             </div>
           </motion.div>
         </div>
