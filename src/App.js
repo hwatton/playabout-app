@@ -17,7 +17,8 @@ function App() {
     rotate: true,
     popUp: true,
     styledBit: true,
-    iGraph: false
+    iGraph: false,
+    navBar: false
   };
 
   const [load, changeLoad] = useState(onOrOff);
@@ -38,6 +39,35 @@ function App() {
     changeLoad(newObj);
   }
 
+  function navLoader() {
+    let turnemOff;
+
+    if (!load.navBar) {
+      turnemOff = {
+        thing: false,
+        normal: false,
+        d3: false,
+        rotate: false,
+        popUp: false,
+        styledBit: false,
+        iGraph: false,
+        navBar: true
+      };
+    } else {
+      turnemOff = {
+        thing: true,
+        normal: true,
+        d3: true,
+        rotate: true,
+        popUp: true,
+        styledBit: true,
+        iGraph: false,
+        navBar: false
+      };
+    }
+    changeLoad(turnemOff);
+  }
+
   function graphLoader() {
     let turnemOff;
 
@@ -49,7 +79,8 @@ function App() {
         rotate: false,
         popUp: false,
         styledBit: false,
-        iGraph: true
+        iGraph: true,
+        navBar: false
       };
     } else {
       turnemOff = {
@@ -59,7 +90,8 @@ function App() {
         rotate: true,
         popUp: true,
         styledBit: true,
-        iGraph: false
+        iGraph: false,
+        navBar: false
       };
     }
     changeLoad(turnemOff);
@@ -73,6 +105,9 @@ function App() {
         <button onClick={randomLoader}>LOAD random conditional</button>
         <button className="graphBtn" onClick={graphLoader}>
           {load.iGraph ? "Unload Graph Component" : "Load Interactive Graph"}
+        </button>
+        <button className="graphBtn" onClick={navLoader}>
+          {load.navBar ? "Unload Navbar" : "Load Navbar"}
         </button>
       </div>
       <div className="secondBit">
