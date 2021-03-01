@@ -44,12 +44,12 @@ function App() {
 
     if (!load.navBar) {
       turnemOff = {
-        thing: false,
-        normal: false,
-        d3: false,
-        rotate: false,
-        popUp: false,
-        styledBit: false,
+        thing: true,
+        normal: true,
+        d3: true,
+        rotate: true,
+        popUp: true,
+        styledBit: true,
         iGraph: false,
         navBar: true
       };
@@ -101,7 +101,16 @@ function App() {
 
   return (
     <div className="App">
-      <div className="topBit">
+      <div
+        className="topBit"
+        style={{
+          backgroundColor: "#ffccff",
+          borderRadius: "5px",
+          borderStyle: "solid",
+          borderWidth: "1px",
+          border: "red"
+        }}
+      >
         <button onClick={randomLoader}>LOAD random conditional</button>
         <button className="graphBtn" onClick={graphLoader}>
           {load.iGraph ? "Unload Graph Component" : "Load Interactive Graph"}
