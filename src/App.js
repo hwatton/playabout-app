@@ -121,7 +121,7 @@ function App() {
         </button>
       </div>
       <div className="secondBit">
-      {load.navBar && <Navbar />}
+        {load.navBar && <Navbar />}
         {load.thing && <Thingy className="Thingy" text="two or three" />}
         {load.normal && (
           <Normal
