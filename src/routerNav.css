@@ -1,0 +1,24 @@
+.router-nav-holder {
+  margin: 0;
+  display: flex;
+  background-color: black;
+  padding: 5px;
+}
+
+.router-nav-link {
+}
+
+.navText {
+  display: block;
+  color: white;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: yellow;
+}
+
+.router-nav-link :hover {
+  color: rgb(255, 0, 0);
+}

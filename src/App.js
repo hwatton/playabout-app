@@ -10,7 +10,7 @@ import StyledDiv from "./components/styleD/styledWithTailwind.jsx";
 import Rotate from "./components/motionDiv.jsx";
 import Navbar from "./components/navbar/navbar.jsx";
 
-function App() {
+function MainPage() {
   let onOrOff = {
     thing: false,
     normal: true,
@@ -148,4 +148,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
