@@ -1,16 +1,22 @@
 .router-nav-holder {
   margin: 0;
-  display: flex;
   background-color: black;
   padding: 5px;
+}
+
+.router-nav-holder * {
+  display: inline-block;
 }
 
 .router-nav-link {
   list-style-type: none;
 }
 
+.hold-about {
+  margin-top: 20px;
+}
+
 .navText {
-  display: block;
   color: white;
   margin-right: 5px;
   margin-left: 5px;

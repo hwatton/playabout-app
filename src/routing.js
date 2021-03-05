@@ -1,45 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Mainpage from "./App.js";
-import styles from "./routerNav.css";
+import RouterNavBar from "./routerNavBar.jsx";
+import Dthreediv from "./components/d3div.jsx";
 
 export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul className="router-nav-holder">
-            <li className="router-nav-link">
-              <Link to="/" className="navText">
-                Main page
-              </Link>
-            </li>
-            <li className="router-nav-link">
-              <Link className="navText" to="/about">
-                About
-              </Link>
-            </li>
-            <li className="router-nav-link">
-              <Link className="navText" to="/contact">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </nav>
+  const [showd3div, setd3div] = useState(true);
 
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/">
-            <Mainpage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+  return (
+    <div>
+      <Router>
+        <div>
+          <RouterNavBar />
+
+          <Switch>
+            <Route path="/about">
+              <div className="hold-about">
+                <About />
+              </div>
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+            <Route path="/">
+              <Mainpage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+      <Dthreediv show={showd3div} />
+    </div>
   );
 }
 
