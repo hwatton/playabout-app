@@ -56,6 +56,15 @@
   flex-wrap: wrap;
 }
 
+.hold-about {
+  background-color: black;
+  height: 600px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
 .graphInput {
   width: 40px;
   margin: 2px;

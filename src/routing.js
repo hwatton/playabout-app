@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Mainpage from "./App.js";
 import RouterNavBar from "./routerNavBar.jsx";
 import Dthreediv from "./components/d3div.jsx";
+import Flashy from "./components/about/about.jsx";
 
 export default function App() {
   const [showd3div, setd3div] = useState(true);
+
 
   return (
     <div>
@@ -14,9 +16,10 @@ export default function App() {
           <RouterNavBar />
 
           <Switch>
-            <Route path="/about">
+            <Route 
+            path="/about">
               <div className="hold-about">
-                <About />
+                <Flashy />
               </div>
             </Route>
             <Route path="/contact">
