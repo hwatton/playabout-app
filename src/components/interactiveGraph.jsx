@@ -51,7 +51,8 @@ function InterGraph(props) {
   return (
     <div className="interactiveGraph">
       <div className="inputHolder">{peez}</div>
-      <br/>
+      <br />
+      <br />
       <div className="chartHolder">
         <BarChart testInfo={data} />
         <LineGraph testInfo={data} />
