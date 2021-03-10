@@ -11,6 +11,11 @@ function RouterNavBar() {
           </Link>
         </li>
         <li className="router-nav-link">
+          <Link className="navText" to="/squares">
+            Squares
+          </Link>
+        </li>
+        <li className="router-nav-link">
           <Link className="navText" to="/about">
             About
           </Link>

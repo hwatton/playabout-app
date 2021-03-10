@@ -4,6 +4,7 @@ import Mainpage from "./App.js";
 import RouterNavBar from "./routerNavBar.jsx";
 import Dthreediv from "./components/d3div.jsx";
 import Flashy from "./components/about/about.jsx";
+import Squares from "./components/squares/squares.jsx";
 import ContactBox from "./components/contact/contact.jsx";
 
 export default function App() {
@@ -19,6 +20,11 @@ export default function App() {
             <Route path="/about">
               <div className="hold-about">
                 <Flashy />
+              </div>
+            </Route>
+            <Route path="/squares">
+              <div className="hold-squares">
+                <Squares />
               </div>
             </Route>
             <Route path="/contact">

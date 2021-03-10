@@ -1,14 +1,17 @@
 import {motion} from "framer-motion"
 import "./contact.css";
-import { useState }  from "react"
+import { useState, useRef }  from "react"
 
 function ContactInfo() {
 
 
   const [showThing, setShowThing] = useState(false)
 
+  const constraintsRef = useRef(null)
+
   return (
-    <div className="contactHolder">
+    <div className="contactHolder"
+    ref={constraintsRef}>
       <p>Did it work this time?</p>
       <p>Did it work this time?</p>
       <p>Did it work this time?</p>
@@ -19,8 +22,8 @@ function ContactInfo() {
 <div>
       <motion.div
       className="draggyThing"
-      drag="x"
-      dragConstraints={{ left: 0, right: 300 }}
+      drag
+      dragConstraints={constraintsRef}
       onHoverStart={e => {setShowThing(true)}}
       onHoverEnd={e => {setShowThing(false)}}
       >

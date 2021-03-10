@@ -65,6 +65,13 @@
   padding-top: 20px;
 }
 
+.hold-squares {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
 .graphInput {
   width: 40px;
   margin: 2px;
