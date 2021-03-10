@@ -17,7 +17,6 @@ grid is hardcoded 20 rows by 40 columns.
 const [data, setData] = useState(sqData())
 
 function newData() {
-    console.log("clicky")
     let nD = sqData()
     setData(nD)
 }
