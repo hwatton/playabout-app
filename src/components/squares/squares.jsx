@@ -20,9 +20,11 @@ grid is hardcoded 20 rows by 40 columns.
 
   for (let i = 0; i < num; i++) {
     grid.push(
-      <Square data={data[i].norm} clickFunc={newData} key={"key_" + i} />
+      <Square data={data[i]} clickFunc={newData} key={"key_" + i} />
     );
   }
+
+  
 
   const divWidth = 2 * (rNum * 24 + 2);
   return (
@@ -30,8 +32,8 @@ grid is hardcoded 20 rows by 40 columns.
       style={{
         display: "flex",
         flexWrap: "wrap",
-        "min-width": divWidth,
-        "max-width": divWidth,
+        "minWidth": divWidth,
+        "maxWidth": divWidth,
         margin: "10px"
       }}
     >
@@ -49,7 +51,7 @@ function Square(props) {
         height: "20px",
         margin: "2px",
         backgroundColor:
-          "rgb(" + (256 - props.data) + ", 0, " + (256 - props.data / 2) + ")"
+          "rgb(" + (256 - props.data) + ", 0, " + (256 -  (props.data / 2)) + ")"
       }}
     ></div>
   );
