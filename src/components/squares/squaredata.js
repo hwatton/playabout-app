@@ -1,7 +1,7 @@
 import * as jStat from "jstat";
 import * as d3 from "d3";
 
-function sqData() {
+function sqData(rows, cols, sdCoefficient, randNum) {
   /* add arguments:
   rows
   cols
@@ -11,10 +11,7 @@ function sqData() {
   
   */
 
-  const rows = 20;
-  const cols = 40;
-  const sdCoefficient = 2;
-  const randNum = 0;
+  
 
   const tx = Math.floor(Math.random() * rows);
   const ty = Math.floor(Math.random() * cols);
