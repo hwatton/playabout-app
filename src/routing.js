@@ -6,6 +6,7 @@ import Dthreediv from "./components/d3div.jsx";
 import Flashy from "./components/about/about.jsx";
 import Squares from "./components/squares/squares.jsx";
 import ContactBox from "./components/contact/contact.jsx";
+import Maze from "./components/maze/maze.jsx"
 
 export default function App() {
   const [showd3div, setd3div] = useState(true);
@@ -20,6 +21,11 @@ export default function App() {
             <Route path="/about">
               <div className="hold-about">
                 <Flashy />
+              </div>
+            </Route>
+            <Route path="/maze">
+              <div className="hold-maze">
+                <Maze/>
               </div>
             </Route>
             <Route path="/squares">
@@ -41,6 +47,4 @@ export default function App() {
   );
 }
 
-function Contact() {
-  return <h2>contact me fool</h2>;
-}
+

@@ -34,7 +34,7 @@ function MainPage() {
   function randomLoader() {
     let newObj = {};
 
-    for (let [k, v] of Object.entries(load)) {
+    for (let [k] of Object.entries(load)) {
       newObj[k] = Math.random() < 0.5;
     }
     changeLoad(newObj);

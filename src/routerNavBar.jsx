@@ -25,6 +25,11 @@ function RouterNavBar() {
             Contact
           </Link>
         </li>
+        <li className="router-nav-link">
+          <Link className="navText" to="/maze">
+            Mazes
+          </Link>
+        </li>
       </ul>
     </nav>
   );
