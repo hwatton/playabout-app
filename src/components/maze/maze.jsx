@@ -1,12 +1,21 @@
 import { useState } from "react"
 import MazeGrid from "./mazeGrid.jsx"
+import "./mazeStyle.css"
 
 function Maze() {
 
 
 
-    const handleForm = (e)=>{
-        setSubText(size)
+   
+
+    const handleVersionUpdate = ()=>{
+
+        let current = subText.version + 1
+
+
+        setSubText({
+            cells:size,
+        version: current})
     }
 
     function handleNumber(val) {
@@ -14,9 +23,12 @@ function Maze() {
 
     }
 
-    const [size,setSize] = useState(25)
+    const [size,setSize] = useState(8)
 
-    const [subText, setSubText] = useState(size)
+    const [subText, setSubText] = useState({
+        cells:size,
+    version: 0}
+        )
 
     return (
         <div className="mazeTopContainer">
@@ -27,22 +39,27 @@ function Maze() {
             backgroundColor: "white",
             justifyContent: "center"
         }}>
-            
-                <input type="number" step="1" value={size} max="50" onChange={(e)=>{handleNumber(e.target.value)}}/>
-                
-                <div style={{
-                    width: "30px",
-                    height: "10px",
-                    backgroundColor: "red"
-                }}
-                onClick={(e)=>{handleForm(e)}}></div>
+            <div>Enter number of cells here:
+                <input className="numberInput" type="number" step="1" value={size} min="2" max="50" onChange={(e)=>{handleNumber(e.target.value)}}/>
+               </div>
+             <button
+                className="enterButton"
+                onClick={()=>{handleVersionUpdate()}}>new Maze please</button>
             
           
         </div>
-        <p>big note: change input. greater than 50 ish is going to crash browsers and is illegible.</p>
+        <br/>
         <MazeGrid
-            size={size}
-            svgSize={500}/>
+            cellNumber={subText.cells}
+            svgSize={500}
+            version={subText.version}
+            />
+            <br/>
+            <h2>More info:</h2>
+            <p>The maze is limited to 50 x 50 cells as it can be very slow to render in a browser as it gets larger, although the algorithm does work fine.</p>
+            <p>It is created programmatically each time using a Kruskal's Algoritm based method.
+                <p>One of the positives of this method is the randomised nature of the paths layout. The drawback is that the solution might be very easy! It might also be extremely difficult!</p>
+            </p>
         </div>
     )
 }

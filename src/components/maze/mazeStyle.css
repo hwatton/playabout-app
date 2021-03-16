@@ -1,0 +1,18 @@
+.mazeTopContainer {
+    text-align: center;
+}
+
+.numberInput {
+width: 44px;
+margin: 10px;
+padding: 2px;
+border-style: solid;
+border-color: grey;
+border-width: 2px;
+}
+
+.enterButton {
+    padding: 2px;
+    background-color: magenta;
+    border-radius: 5px;
+}

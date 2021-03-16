@@ -11,7 +11,7 @@ function MazeGrid (props) {
 
     useEffect(() => {
 
-        const data = MazeData(props.size, props.svgSize)
+        const data = MazeData(props.cellNumber, props.svgSize)
 
         const svgC = d3.select(mazeContainer.current);
 
@@ -28,19 +28,20 @@ function pathWidth(size) {
 
 }
 
+if (props.cellNumber<=50 && props.cellNumber > 0) {
 
         svgC.append("path")
         .attr("class", "mazeLine")
         .attr("d", data.wallOne)
         .attr("fill", "none")
-        .style("stroke-width", pathWidth(props.size))
+        .style("stroke-width", pathWidth(props.cellNumber))
         .style("stroke", "black")
 
         svgC.append("path")
         .attr("class", "mazeLine")
         .attr("d", data.wallTwo)
         .attr("fill", "none")
-        .style("stroke-width", pathWidth(props.size))
+        .style("stroke-width", pathWidth(props.cellNumber))
         .style("stroke", "black")
 
         for (let i=0; i<data.interiorWalls.length; i++) {
@@ -48,7 +49,7 @@ function pathWidth(size) {
             .attr("class", "mazeLine")
         .attr("d", data.interiorWalls[i].lineData)
         .attr("fill", "none")
-        .style("stroke-width", pathWidth(props.size))
+        .style("stroke-width", pathWidth(props.cellNumber))
         .style("stroke", "black")
         }
 
@@ -58,22 +59,25 @@ function pathWidth(size) {
         .attr("cx", data.circleData[i].cx)
         .attr("cy", data.circleData[i].cy)
         .attr("r", ()=>{
-            let str = pathWidth(props.size)
+            let str = pathWidth(props.cellNumber)
             return 0.85*(parseInt(str.substring(0,1), 10)/2)
         })
         .attr("fill", "black")
         .style("stroke", "none")
         }
+    }
 
 
        
-      }, []);
+      }, [props.cellNumber, props.version]);
 
 
     return (
         
-        <div className="container">
-            <p>{props.size}</p>
+        <div className="container"
+        style={{
+            width: props.svgSize
+        }}>
       <svg
         className="d3-component"
         width={props.svgSize}
