@@ -1,58 +1,63 @@
-import MazeData from "./mazeFunction.js"
-import * as d3 from "d3"
+import MazeData from "./mazeFunction.js";
+import * as d3 from "d3";
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect } from "react";
 
-function MazeGrid (props) {
+function MazeGrid(props) {
+  const mazeContainer = useRef(null);
 
-    const mazeContainer = useRef(null);
+  useEffect(() => {
+    const data = MazeData(props.cellNumber, props.svgSize);
 
-   
+    const svgC = d3.select(mazeContainer.current);
 
-    useEffect(() => {
+    svgC.selectAll(".mazeLine").remove();
 
-        const data = MazeData(props.cellNumber, props.svgSize)
+    function pathWidth(size) {
+      let wd;
+      if (size < 100) {
+        wd = "1px";
+      }
+      if (size < 40) {
+        wd = "2px";
+      }
+      if (size < 30) {
+        wd = "3px";
+      }
+      if (size < 20) {
+        wd = "5px";
+      }
 
-        const svgC = d3.select(mazeContainer.current);
+      return wd;
+    }
 
-        svgC.selectAll(".mazeLine").remove()
-
-function pathWidth(size) {
-    let wd 
-    if (size<100) {wd = "1px"}
-    if (size<40) {wd = "2px"}
-    if (size<30) {wd = "3px"}
-    if (size<20) {wd = "5px"}
-
-    return wd
-
-}
-
-if (props.cellNumber<=50 && props.cellNumber > 0) {
-
-        svgC.append("path")
+    if (props.cellNumber <= 50 && props.cellNumber > 0) {
+      svgC
+        .append("path")
         .attr("class", "mazeLine")
         .attr("d", data.wallOne)
         .attr("fill", "none")
         .style("stroke-width", pathWidth(props.cellNumber))
-        .style("stroke", "black")
+        .style("stroke", "black");
 
-        svgC.append("path")
+      svgC
+        .append("path")
         .attr("class", "mazeLine")
         .attr("d", data.wallTwo)
         .attr("fill", "none")
         .style("stroke-width", pathWidth(props.cellNumber))
-        .style("stroke", "black")
+        .style("stroke", "black");
 
-        for (let i=0; i<data.interiorWalls.length; i++) {
-            svgC.append("path")
-            .attr("class", "mazeLine")
-        .attr("d", data.interiorWalls[i].lineData)
-        .attr("fill", "none")
-        .style("stroke-width", pathWidth(props.cellNumber))
-        .style("stroke", "black")
-        }
-
+      for (let i = 0; i < data.interiorWalls.length; i++) {
+        svgC
+          .append("path")
+          .attr("class", "mazeLine")
+          .attr("d", data.interiorWalls[i].lineData)
+          .attr("fill", "none")
+          .style("stroke-width", pathWidth(props.cellNumber))
+          .style("stroke", "black");
+      }
+      /* disabled for now - triggers an error
         for (let i=0; i<data.circleData.length; i++) {
             svgC.append("circle")
             .attr("class", "mazeLine path-junctions")
@@ -65,27 +70,26 @@ if (props.cellNumber<=50 && props.cellNumber > 0) {
         .attr("fill", "black")
         .style("stroke", "none")
         }
+
+        */
     }
+  }, [props.cellNumber, props.version, props.svgSize]);
 
-
-       
-      }, [props.cellNumber, props.version]);
-
-
-    return (
-        
-        <div className="container"
-        style={{
-            width: props.svgSize
-        }}>
+  return (
+    <div
+      className="container"
+      style={{
+        width: props.svgSize
+      }}
+    >
       <svg
         className="d3-component"
         width={props.svgSize}
         height={props.svgSize}
         ref={mazeContainer}
       />
-      </div>
-    )
+    </div>
+  );
 }
 
-export default MazeGrid
+export default MazeGrid;

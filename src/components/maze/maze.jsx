@@ -1,74 +1,79 @@
-import { useState } from "react"
-import MazeGrid from "./mazeGrid.jsx"
-import "./mazeStyle.css"
+import { useState } from "react";
+import MazeGrid from "./mazeGrid.jsx";
+import "./mazeStyle.css";
 
 function Maze() {
+  const handleVersionUpdate = () => {
+    let current = subText.version + 1;
 
+    setSubText({
+      cells: size,
+      version: current
+    });
+  };
 
+  function handleNumber(val) {
+    setSize(val);
+  }
 
-   
+  const [size, setSize] = useState(8);
 
-    const handleVersionUpdate = ()=>{
+  const [subText, setSubText] = useState({
+    cells: size,
+    version: 0
+  });
 
-        let current = subText.version + 1
+  return (
+    <div className="mazeTopContainer">
+      <div className="mazeControl">
+        <p> Enter number of cells here:</p>
 
+        <input
+          className="numberInput"
+          type="number"
+          step="1"
+          value={size}
+          min="2"
+          max="50"
+          onChange={(e) => {
+            handleNumber(e.target.value);
+          }}
+        />
+        <button
+          className="enterButton"
+          onClick={() => {
+            handleVersionUpdate();
+          }}
+        >
+          new Maze please
+        </button>
+      </div>
 
-        setSubText({
-            cells:size,
-        version: current})
-    }
-
-    function handleNumber(val) {
-        setSize(val)
-
-    }
-
-    const [size,setSize] = useState(8)
-
-    const svgSize = 500
-
-    const [subText, setSubText] = useState({
-        cells:size,
-    version: 0}
-        )
-
-    return (
-        <div className="mazeTopContainer">
-            <br/>
-        <div style={{
-            width: svgSize,
-            display: "flex",
-            flexWrap: "wrap",
-            backgroundColor: "white",
-            justifyContent: "center"
-        }}>
-            <div>Enter number of cells here:
-                <input className="numberInput" type="number" step="1" value={size} min="2" max="50" onChange={(e)=>{handleNumber(e.target.value)}}/>
-               </div>
-             <button
-                className="enterButton"
-                onClick={()=>{handleVersionUpdate()}}>new Maze please</button>
-            
-          
-        </div>
-        <br/>
+      <div classname="Maze">
         <MazeGrid
-            cellNumber={subText.cells}
-            svgSize={svgSize}
-            version={subText.version}
-            />
-            <br/>
-            <div style={{
-                textAlign: "left"
-            }}>
-            <h2>More info:</h2>
-            <p>The maze is limited to 50 x 50 cells as it can be very slow to render in a browser as it gets larger, although the algorithm does work fine at any size.</p>
-            <p>It is created programmatically each time using a Kruskal's Algoritm based method.
-                <p>One of the positives of this method is the randomised nature of the paths layout. The drawback is that the solution might be very easy! It might also be extremely difficult!</p>
-            </p>
-            </div>
-        </div>
-    )
+          cellNumber={subText.cells}
+          svgSize={500}
+          version={subText.version}
+        />
+      </div>
+      <div className="mazeInfo">
+        <h2>More info:</h2>
+        <p>
+          The maze is limited to 50 x 50 cells as it can be very slow to render
+          in a browser as it gets larger, although the algorithm does work fine.
+        </p>
+        <p>
+          It is created programmatically each time using a Kruskal's Algoritm
+          based method.{" "}
+        </p>
+        <p>
+          One of the positives of this method is the randomised nature of the
+          paths layout. The drawback is that the solution might be very easy! It
+          might also be extremely difficult!
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export default Maze
+export default Maze;
