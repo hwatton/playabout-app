@@ -25,6 +25,8 @@ function Maze() {
 
     const [size,setSize] = useState(8)
 
+    const svgSize = 500
+
     const [subText, setSubText] = useState({
         cells:size,
     version: 0}
@@ -34,6 +36,7 @@ function Maze() {
         <div className="mazeTopContainer">
             <br/>
         <div style={{
+            width: svgSize,
             display: "flex",
             flexWrap: "wrap",
             backgroundColor: "white",
@@ -51,15 +54,19 @@ function Maze() {
         <br/>
         <MazeGrid
             cellNumber={subText.cells}
-            svgSize={500}
+            svgSize={svgSize}
             version={subText.version}
             />
             <br/>
+            <div style={{
+                textAlign: "left"
+            }}>
             <h2>More info:</h2>
-            <p>The maze is limited to 50 x 50 cells as it can be very slow to render in a browser as it gets larger, although the algorithm does work fine.</p>
+            <p>The maze is limited to 50 x 50 cells as it can be very slow to render in a browser as it gets larger, although the algorithm does work fine at any size.</p>
             <p>It is created programmatically each time using a Kruskal's Algoritm based method.
                 <p>One of the positives of this method is the randomised nature of the paths layout. The drawback is that the solution might be very easy! It might also be extremely difficult!</p>
             </p>
+            </div>
         </div>
     )
 }
