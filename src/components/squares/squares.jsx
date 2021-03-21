@@ -40,14 +40,16 @@ let obj = dV.find((x) => x.id === e.target.id);
     dt[index].value = e.target.value
 
     if(e.target.id == "id_cl") {
-        console.log(e.target.value)
-        setDivWidth(e.target.value)
+        console.log("yes" + e.target.value)
+
+        let string = (2 + e.target.value*24) + "px"
+        setDivWidth(string)
     }
 
     setDV(dt);
   }
 
-  
+  let startingWidth = (2 + dV[1].value*24) + "px"
 
   const [divWidth, setDivWidth] = useState(2 + dV[1].value*24)
 //the above needs to be passed to the div as a prop
@@ -59,6 +61,7 @@ let obj = dV.find((x) => x.id === e.target.id);
   
   return (
 <div
+key={kee}
 style={{
     paddingLeft: "8px",
     paddingRight: "8px",
@@ -67,7 +70,6 @@ style={{
 <input
         className="graphInputDark"
         id={item.id}
-        key={kee}
         onChange={(e) => controlHandler(e)}
         type="number"
         step={item.step}

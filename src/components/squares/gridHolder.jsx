@@ -2,13 +2,14 @@ import SquareGrid from "./squareGrid.jsx"
 
 function GridHolder(props) {
 console.log(props.width)
+
+let thisWidth = props.width
 return (
 <div
       style={{
+        width: thisWidth,
         display: "flex",
         flexWrap: "wrap",
-        minWidth: props.width,
-        maxWidth: props.width,
         margin: "10px"
       }}
     >
