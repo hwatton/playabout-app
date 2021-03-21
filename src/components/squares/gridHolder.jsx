@@ -1,7 +1,6 @@
 import SquareGrid from "./squareGrid.jsx"
 
 function GridHolder(props) {
-console.log(props.width)
 
 let thisWidth = props.width
 return (

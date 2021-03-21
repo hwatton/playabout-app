@@ -1,5 +1,7 @@
 import { useState } from "react";
 import GridHolder from "./gridHolder.jsx"
+import { SketchPicker } from 'react-color';
+
 
 function Squares() {
  
@@ -21,7 +23,7 @@ const rex = Math.floor(Math.random()*dV[0].value)
 const rey = Math.floor(Math.random()*dV[1].value)
 
 const [location, setLocation] = useState([rex, rey]);
-console.log(location)
+
   function newLocation() {
     let nX = Math.floor(Math.random()*dV[0].value)
     let nY = Math.floor(Math.random()*dV[1].value)
@@ -40,8 +42,7 @@ let obj = dV.find((x) => x.id === e.target.id);
     dt[index].value = e.target.value
 
     if(e.target.id == "id_cl") {
-        console.log("yes" + e.target.value)
-
+      
         let string = (2 + e.target.value*24) + "px"
         setDivWidth(string)
     }
@@ -81,9 +82,18 @@ style={{
 
   })
 
+  const [showPicker, setShowPicker] = useState(true)
+
 
   return (
       <div>
+        {showPicker && <div style={{
+          position: "fixed",
+          top: "200px",
+          left: "50%",
+          opacity: "90%"
+        }}><SketchPicker
+        width={400}/></div>}
           <div
           style={{
             display: "flex",
