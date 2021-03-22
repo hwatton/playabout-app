@@ -11,6 +11,12 @@ function Squares() {
   /*
 for now: 
 grid is hardcoded 20 rows by 40 columns.
+to change:
+map method of color inputs
+grid:
+this needs to only rerender the aspects that are being controlled, 
+not call the whole boohoo function just for a recolor. maybe the boohoo
+can be inside a useEffect, and only run when specifc controls are changed.
 */
 const [dV, setDV] = useState(
         [{name: "rows", value: 20, step: 1, id: "id_rw"},
@@ -82,27 +88,120 @@ style={{
 
   })
 
-  const [showPicker, setShowPicker] = useState(true)
+
+  const startingColObj = [
+    {id: "colour_0", value: hslColour(), picker: false},
+    {id: "colour_1", value: hslColour(), picker: false},
+    {id: "colour_2", value: hslColour(), picker: false},
+    {id: "colour_3", value: hslColour(), picker: false},
+    {id: "colour_4", value: hslColour(), picker: false},
+    {id: "colour_5", value: hslColour(), picker: false},
+    {id: "colour_6", value: hslColour(), picker: false},
+    {id: "colour_7", value: hslColour(), picker: false},
+    {id: "colour_8", value: hslColour(), picker: false},
+    {id: "colour_9", value: hslColour(), picker: false}
+  ]
+
+  const [colourArray, setColourArray] = useState(startingColObj)
+  const [showPicker, setShowPicker] = useState(false)
+  const [pickerVal, setPickerVal] = useState(hslColour())
+
+
+  function handleColourChange(event) {
+
+let thisID = event.target.id
+console.log(thisID)
+let arr = colourArray
+console.log(arr)
+
+for (let i = 0; i<arr.length; i++) {
+  if (arr[i].id === thisID) {
+    setPickerVal(arr[i].value)
+    arr[i].picker = true
+    }
+}
+setShowPicker(true)
+setColourArray(arr)
+  }
+
+  function pickerColChange(event) {
+   
+    setPickerVal(event.hex)
+    let arr = colourArray
+    for (let i = 0; i<arr.length; i++) {
+      if (arr[i].picker) {
+        console.log("foundit")
+       arr[i].value = event.hex}
+    }
+    setColourArray(arr)
+
+  }
+
+  function closePicker() {
+setShowPicker(false)
+let arr = colourArray
+for (let i = 0; i<arr.length; i++) {
+  if (arr[i].picker) {
+  
+   arr[i].picker = false}
+}
+
+setColourArray(arr)
+  }
+
+
+  const colourInputs = colourArray.map((x,i)=>{
+
+      return (
+        <div 
+        key={x.id}
+        className="input-holder">
+            <button 
+  onClick={(e)=> handleColourChange(e)}
+  id={x.id}
+  style={{
+    width: "20px",
+    height: "30px",
+    backgroundColor: colourArray[i].value,
+margin: "10px"
+  }}></button>
+        </div>
+    )
+  })
 
 
   return (
       <div>
-        {showPicker && <div style={{
-          position: "fixed",
-          top: "200px",
-          left: "50%",
-          opacity: "90%"
-        }}><SketchPicker
-        width={400}/></div>}
+        
           <div
           style={{
             display: "flex",
             flexWrap: "wrap",
             margin: "20px",
             justifyContent: "center"}}>
-{controlPanel}
+{controlPanel} 
+          </div>
+          <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            margin: "20px",
+            justifyContent: "center"}}>
+{colourInputs}
              
           </div>
+          {showPicker && <div style={{
+            position: "fixed",
+            top: "310px",
+            left: "50%",
+            margin: "-100px"
+
+          }}> <button
+          onClick={()=>{closePicker()}}>xxxxx</button> <SketchPicker 
+          color={pickerVal}
+          width={200}
+          onChangeComplete={(e)=> pickerColChange(e) }/></div>}
+         
    
     <GridHolder 
     data={dV}
@@ -121,5 +220,18 @@ style={{
 }
 
 
+
+function hslColour(){
+
+  const h = Math.random()*360
+  const s = Math.random()*100 + "%"
+  const l = Math.random()*100 + "%"
+
+
+  const colour = "hsl(" + h +", " + s + ", " + l +")"
+
+
+  return colour
+}
 
 export default Squares;
