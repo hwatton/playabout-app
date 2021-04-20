@@ -21,7 +21,8 @@ function DthreeTestPage(props) {
         transform: "rotate(180deg)"
       }
 
-    
+    const sum = ((300)*6 + 1000 + 700 + 3000) + " piunds"
+
 
  
 
@@ -49,7 +50,7 @@ function DthreeTestPage(props) {
             <LineBlock
             colours={["#22eecc", "#00aa66"]}/>
     </div>
-    
+    <p style={{color: "white"}}>{sum}</p>
 
     </div>
     )

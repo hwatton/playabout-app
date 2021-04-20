@@ -30,6 +30,11 @@ function RouterNavBar() {
             Mazes
           </Link>
         </li>
+        <li className="router-nav-link">
+          <Link className="navText" to="/animationtestpage">
+            Animation Test Page
+          </Link>
+        </li>
       </ul>
     </nav>
   );
