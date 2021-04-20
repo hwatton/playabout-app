@@ -3,7 +3,7 @@ import {motion} from "framer-motion"
 function LineBlock(props) {
 
     const num = 6
-    console.log(props)
+    
 
     const blocks =  [...Array(num)].map((el,i) =>{
 
@@ -36,7 +36,10 @@ transition={{
     )
 
     return (
-        <div>
+        <div
+        onMouseEnter={props.mouseIn}
+       // onMouseOut={props.mouseOut}
+        >
           {blocks}
         </div>
     )
