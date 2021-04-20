@@ -30,6 +30,11 @@ function RouterNavBar() {
             Mazes
           </Link>
         </li>
+        <li className="router-nav-link">
+          <Link className="navText" to="/d3testpage">
+            D3 Playground
+          </Link>
+        </li>
       </ul>
     </nav>
   );

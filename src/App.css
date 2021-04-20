@@ -72,6 +72,13 @@
   padding-top: 20px;
 }
 
+.hold-d3testpage {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
 .graphInput {
   width: 40px;
   margin: 2px;
